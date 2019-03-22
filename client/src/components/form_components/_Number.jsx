@@ -1,8 +1,16 @@
 import React from 'react';
 
-const _Number = (props) => {
+const _Number = ({name, value, handleChange}) => {
   return(
-    <input></input>
+    <input
+      class="number"
+      name={name}
+      placeholder="Enter a number"
+      type="number"
+      value={value}
+      onChange={handleChange}
+
+    />
   )
 }
 

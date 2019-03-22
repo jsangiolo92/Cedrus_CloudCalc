@@ -8,14 +8,22 @@ class CalcForm extends React.Component{
     this.state = {
       numberOne: '',
       numberTwo: '',
-      operater: ''
+      operator: ''
     }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   render() {
     return(
       <form id="calc-form">
-
+        <_Number name={'numberOne'} value={this.state.numberOne} handleChange={this.handleChange.bind(this)}/>
+        <Operator value={this.state.operator} handleChange={this.handleChange.bind(this)}/>
+        <_Number name={'numberTwo'} value={this.state.numberTwo} handleChange={this.handleChange.bind(this)}/>
       </form>
     )
   }

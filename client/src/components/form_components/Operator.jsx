@@ -1,8 +1,15 @@
 import React from 'react';
 
-const Operator = (props) => {
+const Operator = ({value, handleChange}) => {
   return(
-    <input></input>
+    <input
+      class="operator"
+      name="operator"
+      placeholder="Enter a math operator"
+      type="text"      
+      value={value}
+      onChange={handleChange}
+  />
   )
 }
 
