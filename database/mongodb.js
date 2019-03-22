@@ -25,6 +25,11 @@ const addCalc = (info) => {
   })
 }
 
+const getCalcs = () => {
+  return Calcs.find()
+}
+
 module.exports = {
-  addCalc: addCalc
+  addCalc: addCalc,
+  getCalcs: getCalcs
 }

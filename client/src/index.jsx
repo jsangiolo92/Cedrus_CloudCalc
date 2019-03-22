@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CalcForm from './components/CalcForm.jsx';
+import CalcsList from './components/CalcsList.jsx';
+import axios from 'axios';
 
 class App extends React.Component{
   constructor(props) {
@@ -11,20 +13,34 @@ class App extends React.Component{
     }
   }
 
+  componentDidMount() {
+    this.getCalcs();
+  }
+
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
     });
   }
 
-
+  getCalcs() {
+    axios.get('/calcs')
+    .then( ({data}) => {
+      this.setState({calcs: data})
+    })
+    .catch( (err) => {
+      console.log('error in axios get to calcs: ', err);
+    });
+  }
 
   render() {
     return(
       <div>
         <button onClick={() => this.toggleForm()}>Click to Add a New Calculation</button>
         <br/>
-        {this.state.showForm ? <CalcForm /> : null}
+        {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)}/> : null}
+        <br/>
+        <CalcsList calcs={this.state.calcs}/>
       </div>
     )
   }

@@ -9,6 +9,16 @@ const port = 3800;
 app.use(express.static(('./client/dist')));
 app.use(parser.json());
 
+app.get('/calcs', (req, res) => {
+  mongo.getCalcs()
+  .then( (results) => {
+    res.status(200).send(results);
+  })
+  .catch( (err) => {
+    res.status(500).send('error in mongo getCalcs');
+  });
+});
+
 app.post('/calcs', (req, res) => {
   let result = helpers.calculate(req.body.numberOne, req.body.numberTwo, req.body.operator);
   let obj = {

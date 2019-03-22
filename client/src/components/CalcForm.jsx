@@ -21,6 +21,14 @@ class CalcForm extends React.Component{
     })
   }
 
+  resetForm() {
+    this.setState({
+      numberOne: '', numberTwo: '', operator: '', label: ''
+    }, () => {
+      this.props.getCalcs();
+    })
+  }
+
   checkForValidOperator() {
     const sign = this.state.operator;
     return (sign === '+' || sign === '-' || sign === '*' || sign === '/');
@@ -29,6 +37,7 @@ class CalcForm extends React.Component{
   addCalculation() {
     axios.post('/calcs', this.state)
     .then( () => {
+      this.resetForm();
       console.log('calculation added to db')
     })
     .catch( (err) => {
