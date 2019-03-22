@@ -10,7 +10,8 @@ const CalcsSchema = mongoose.Schema({
   numOne: {type: Number},
   numTwo: {type: Number},
   operator: {type: String},
-  result: {type: Number}
+  result: {type: Number},
+  prevCalc: {type: String}
 });
 
 const Calcs = mongoose.model('Calcs', CalcsSchema);
@@ -21,7 +22,8 @@ const addCalc = (info) => {
     numOne: info.numOne,
     numTwo: info.numTwo,
     operator: info.operator,
-    result: info.result
+    result: info.result,
+    prevCalc: info.prevCalc
   })
 }
 

@@ -11,7 +11,17 @@ class CalcForm extends React.Component{
       numberOne: '',
       numberTwo: '',
       operator: '',
-      label: ''
+      label: '',
+      currentCalc: null
+    }
+  }
+
+  componentDidMount() {
+    let currentCalc = this.props.getCurrentCalc()
+    if (currentCalc) {
+      this.setState({
+        numberOne: currentCalc.result, currentCalc: currentCalc._id
+      });
     }
   }
 

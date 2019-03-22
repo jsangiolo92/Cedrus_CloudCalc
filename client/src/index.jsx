@@ -9,6 +9,7 @@ class App extends React.Component{
     super(props)
     this.state = {
       calcs: [],
+      currentCalc: null,
       showForm: false
     }
   }
@@ -44,6 +45,18 @@ class App extends React.Component{
     });
   }
 
+  setPrevCalc(calc) {
+    this.setState({currentCalc: calc}, () => {
+      if (!this.state.showForm) {
+        this.toggleForm();
+      }
+    });
+  }
+
+  getCurrentCalc() {
+    return this.state.currentCalc;
+  }
+
   hoverOnCalc(name) {
     console.log(name);
   }
@@ -53,9 +66,9 @@ class App extends React.Component{
       <div>
         <button onClick={() => this.toggleForm()}>{this.state.showForm ? 'Click to Hide Form' : 'Click to Add a New Calculation'}</button>
         <br/>
-        {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)} /> : null}
+        {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)} getCurrentCalc={this.getCurrentCalc.bind(this)}/> : null}
         <br/>
-        <CalcsList calcs={this.state.calcs} deleteCalc={this.deleteCalc.bind(this)} hover={this.hoverOnCalc.bind(this)}/>
+        <CalcsList calcs={this.state.calcs} deleteCalc={this.deleteCalc.bind(this)} hover={this.hoverOnCalc.bind(this)} setPrev={this.setPrevCalc.bind(this)}/>
       </div>
     )
   }

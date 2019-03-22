@@ -21,13 +21,15 @@ app.get('/calcs', (req, res) => {
 
 app.post('/calcs', (req, res) => {
   let result = helpers.calculate(req.body.numberOne, req.body.numberTwo, req.body.operator);
+  let prevCalc = req.body.prevCalc ? req.body.prevCalc : '';
   console.log('label is: ', req.body.label)
   let obj = {
     name: req.body.label,
     numOne: parseFloat(req.body.numberOne),
     numTwo: parseFloat(req.body.numberTwo),
     operator: req.body.operator,
-    result: result
+    result: result,
+    prevCalc: prevCalc
   }
   mongo.addCalc(obj)
   .then( () => {
