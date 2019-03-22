@@ -29,7 +29,14 @@ const getCalcs = () => {
   return Calcs.find()
 }
 
+const deleteCalc = (id) => {
+  return Calcs.findByIdAndDelete({
+    _id: id
+  })
+}
+
 module.exports = {
   addCalc: addCalc,
-  getCalcs: getCalcs
+  getCalcs: getCalcs,
+  deleteCalc: deleteCalc
 }

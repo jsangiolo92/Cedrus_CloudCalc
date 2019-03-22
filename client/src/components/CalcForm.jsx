@@ -31,18 +31,23 @@ class CalcForm extends React.Component{
 
   checkForValidOperator() {
     const sign = this.state.operator;
-    return (sign === '+' || sign === '-' || sign === '*' || sign === '/');
+    return sign === '+' || sign === '-' || sign === '*' || sign === '/';
   }
 
   addCalculation() {
-    axios.post('/calcs', this.state)
-    .then( () => {
-      this.resetForm();
-      console.log('calculation added to db')
-    })
-    .catch( (err) => {
-      console.log('error in axios post to calcs: ', err)
-    });
+    if (this.checkForValidOperator()) {
+      axios.post('/calcs', this.state)
+      .then( () => {
+        this.resetForm();
+        console.log('calculation added to db')
+      })
+      .catch( (err) => {
+        console.log('error in axios post to calcs: ', err)
+      });
+    }
+    else {
+      alert('ERROR Please enter a valid math operator');
+    }
   }
 
   render() {

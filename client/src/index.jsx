@@ -33,14 +33,25 @@ class App extends React.Component{
     });
   }
 
+  deleteCalc(id) {
+    axios.delete('/calcs', {params: {id: id}})
+    .then( () => {
+      this.getCalcs();
+      console.log('calc deleted from database');
+    })
+    .catch( (err) => {
+      console.log('error in axios delete to calcs: ', err);
+    });
+  }
+
   render() {
     return(
       <div>
         <button onClick={() => this.toggleForm()}>Click to Add a New Calculation</button>
         <br/>
-        {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)}/> : null}
+        {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)} /> : null}
         <br/>
-        <CalcsList calcs={this.state.calcs}/>
+        <CalcsList calcs={this.state.calcs} deleteCalc={this.deleteCalc.bind(this)}/>
       </div>
     )
   }

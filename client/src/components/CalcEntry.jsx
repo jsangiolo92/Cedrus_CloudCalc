@@ -1,10 +1,10 @@
 import React from 'react';
 
-const CalcEntry = ({calc}) => {
+const CalcEntry = ({calc, deleteCalc}) => {
   return(
     <li>
       {`${calc.numOne} ${calc.operator} ${calc.numTwo} = ${calc.result}`}
-      <button>Click To Remove</button>
+      <button onClick={ () => {deleteCalc(calc._id)}}>Click To Remove</button>
     </li>
   )
 }

@@ -37,6 +37,16 @@ app.post('/calcs', (req, res) => {
   });
 });
 
+app.delete('/calcs', (req, res) => {
+  mongo.deleteCalc(req.query.id)
+  .then( () => {
+    res.status(202).send();
+  })
+  .catch( (err) => {
+    res.status(500).send('error in mongo deleteCalc');
+  });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}...`);
 });
