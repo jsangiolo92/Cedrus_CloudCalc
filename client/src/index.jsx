@@ -44,14 +44,18 @@ class App extends React.Component{
     });
   }
 
+  hoverOnCalc(name) {
+    console.log(name);
+  }
+
   render() {
     return(
       <div>
-        <button onClick={() => this.toggleForm()}>Click to Add a New Calculation</button>
+        <button onClick={() => this.toggleForm()}>{this.state.showForm ? 'Click to Hide Form' : 'Click to Add a New Calculation'}</button>
         <br/>
         {this.state.showForm ? <CalcForm getCalcs={this.getCalcs.bind(this)} /> : null}
         <br/>
-        <CalcsList calcs={this.state.calcs} deleteCalc={this.deleteCalc.bind(this)}/>
+        <CalcsList calcs={this.state.calcs} deleteCalc={this.deleteCalc.bind(this)} hover={this.hoverOnCalc.bind(this)}/>
       </div>
     )
   }
