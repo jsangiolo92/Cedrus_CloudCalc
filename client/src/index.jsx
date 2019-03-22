@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CalcForm from './components/CalcForm.jsx';
 
 class App extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      calcs: []
+      calcs: [],
+      showForm: false
     }
   }
 
   render() {
     return(
-      <div>REACT</div>
+      <div>
+        {this.state.showForm ? <CalcForm /> : null}
+      </div>
     )
   }
 }
