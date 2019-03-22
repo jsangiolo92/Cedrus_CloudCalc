@@ -1,6 +1,7 @@
 import React from 'react';
 import _Number from './form_components/_Number.jsx';
 import Operator from './form_components/Operator.jsx';
+import Label from './form_components/Label.jsx';
 import axios from 'axios';
 
 class CalcForm extends React.Component{
@@ -9,7 +10,8 @@ class CalcForm extends React.Component{
     this.state = {
       numberOne: '',
       numberTwo: '',
-      operator: ''
+      operator: '',
+      label: ''
     }
   }
 
@@ -41,6 +43,7 @@ class CalcForm extends React.Component{
         <_Number name={'numberOne'} value={this.state.numberOne} handleChange={this.handleChange.bind(this)}/>
         <Operator value={this.state.operator} handleChange={this.handleChange.bind(this)}/>
         <_Number name={'numberTwo'} value={this.state.numberTwo} handleChange={this.handleChange.bind(this)}/>
+        <Label value={this.state.label} handleChange={this.handleChange.bind(this)}/>
       </form>
       <br/>
       <button onClick={() => this.addCalculation()}>Add Calc to Database</button>
