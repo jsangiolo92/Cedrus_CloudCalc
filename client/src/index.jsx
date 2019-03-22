@@ -11,9 +11,19 @@ class App extends React.Component{
     }
   }
 
+  toggleForm() {
+    this.setState({
+      showForm: !this.state.showForm
+    });
+  }
+
+
+
   render() {
     return(
       <div>
+        <button onClick={() => this.toggleForm()}>Click to Add a New Calculation</button>
+        <br/>
         {this.state.showForm ? <CalcForm /> : null}
       </div>
     )

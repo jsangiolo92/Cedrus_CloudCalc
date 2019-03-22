@@ -1,6 +1,7 @@
 import React from 'react';
 import _Number from './form_components/_Number.jsx';
 import Operator from './form_components/Operator.jsx';
+import axios from 'axios';
 
 class CalcForm extends React.Component{
   constructor(props) {
@@ -18,13 +19,33 @@ class CalcForm extends React.Component{
     })
   }
 
+  checkForValidOperator() {
+    const sign = this.state.operator;
+    return (sign === '+' || sign === '-' || sign === '*' || sign === '/');
+  }
+
+  addCalculation() {
+    axios.post('/calcs', this.state)
+    .then( () => {
+      console.log('calculation added to db')
+    })
+    .catch( (err) => {
+      console.log('error in axios post to calcs: ', err)
+    });
+  }
+
   render() {
     return(
+      <div>
       <form id="calc-form">
         <_Number name={'numberOne'} value={this.state.numberOne} handleChange={this.handleChange.bind(this)}/>
         <Operator value={this.state.operator} handleChange={this.handleChange.bind(this)}/>
         <_Number name={'numberTwo'} value={this.state.numberTwo} handleChange={this.handleChange.bind(this)}/>
       </form>
+      <br/>
+      <button onClick={() => this.addCalculation()}>Add Calc to Database</button>
+      </div>
+      
     )
   }
 }
