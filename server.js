@@ -21,6 +21,7 @@ app.get('/calcs', (req, res) => {
 
 app.post('/calcs', (req, res) => {
   let result = helpers.calculate(req.body.numberOne, req.body.numberTwo, req.body.operator);
+  console.log('label is: ', req.body.label)
   let obj = {
     name: req.body.label,
     numOne: parseFloat(req.body.numberOne),

@@ -53,16 +53,15 @@ class CalcForm extends React.Component{
   render() {
     return(
       <div>
-      <form id="calc-form">
-        <_Number name={'numberOne'} value={this.state.numberOne} handleChange={this.handleChange.bind(this)}/>
-        <Operator value={this.state.operator} handleChange={this.handleChange.bind(this)}/>
-        <_Number name={'numberTwo'} value={this.state.numberTwo} handleChange={this.handleChange.bind(this)}/>
-        <Label value={this.state.label} handleChange={this.handleChange.bind(this)}/>
-      </form>
-      <br/>
-      <button onClick={() => this.addCalculation()}>Add Calc to Database</button>
+        <form id="calc-form">
+          <_Number name={'numberOne'} value={this.state.numberOne} handleChange={this.handleChange.bind(this)}/>
+          <Operator value={this.state.operator} handleChange={this.handleChange.bind(this)}/>
+          <_Number name={'numberTwo'} value={this.state.numberTwo} handleChange={this.handleChange.bind(this)}/>
+          <Label value={this.state.label} handleChange={this.handleChange.bind(this)}/>
+        </form>
+        <br/>
+        <button onClick={() => this.addCalculation()}>Add Calc to Database</button>
       </div>
-      
     )
   }
 }

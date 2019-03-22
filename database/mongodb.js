@@ -17,7 +17,7 @@ const Calcs = mongoose.model('Calcs', CalcsSchema);
 
 const addCalc = (info) => {
   return Calcs.create({
-    name: info.label,
+    name: info.name,
     numOne: info.numOne,
     numTwo: info.numTwo,
     operator: info.operator,
